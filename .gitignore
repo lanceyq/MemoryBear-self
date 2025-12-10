@@ -36,3 +36,6 @@ nltk_data/
 tika-server*.jar*
 cl100k_base.tiktoken
 libssl*.deb
+
+# api directory is now a separate git repository
+api/
