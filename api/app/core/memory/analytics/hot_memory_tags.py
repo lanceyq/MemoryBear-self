@@ -80,9 +80,7 @@ def get_db_connection():
     # 从全局配置获取 Neo4j 连接信息
     uri = settings.NEO4J_URI
     user = settings.NEO4J_USERNAME
-
-    # 密码必须为了安全从环境变量加载
-    password = os.getenv("NEO4J_PASSWORD")
+    password = settings.NEO4J_PASSWORD
 
     if not uri or not user:
         raise ValueError("在 config.json 中未找到 Neo4j 的 'uri' 或 'username'。")
