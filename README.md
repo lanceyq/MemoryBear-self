@@ -229,7 +229,7 @@ MemoryBear uses Alembic migration files included in the project to create the re
 
 Ensure that the sqlalchemy.url value in the project's alembic.ini file points to your empty PostgreSQL database. Example format:
 
-```toml
+```bash
 sqlalchemy.url = postgresql://<username>:<password>@<host>:<port>/<database_name>
 ```
 
