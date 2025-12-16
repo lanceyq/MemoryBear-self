@@ -1,8 +1,10 @@
+<img width="2346" height="1310" alt="image" src="https://github.com/user-attachments/assets/bc73a64d-cd1e-4d22-be3e-04ce40423a20" />
+
 # MemoryBear empowers AI with human-like memory capabilities
 
 [中文](./README_CN.md) | English
 
-### [Installation Guide](#memorybear Installation Guide)
+### [Installation Guide](#memorybear-installation-guide)
 ### Paper: <a href="https://memorybear.ai/pdf/memoryBear" target="_blank" rel="noopener noreferrer">《Memory Bear AI: A Breakthrough from Memory to Cognition》</a>
 ## Project Overview
 MemoryBear is a next-generation AI memory system independently developed by RedBear AI. Its core breakthrough lies in moving beyond the limitations of traditional "static knowledge storage". Inspired by the cognitive mechanisms of biological brains, MemoryBear builds an intelligent knowledge-processing framework that spans the full lifecycle of perception, refinement, association, and forgetting.The system is designed to free machines from the trap of mere "information accumulation", enabling deep knowledge understanding, autonomous evolution, and ultimately becoming a key partner in human-AI cognitive collaboration.
