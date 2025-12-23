@@ -1,0 +1,128 @@
+# Dependabot 配置文件
+# 文档: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # ==========================================
+  # Python 后端依赖监测 (pip)
+  # ==========================================
+  - package-ecosystem: "pip"
+    directory: "/api"
+    schedule:
+      interval: "weekly"  # 每周检查一次
+      day: "monday"       # 周一执行
+      time: "09:00"       # UTC 时间 09:00
+    open-pull-requests-limit: 5  # 最多同时打开 5 个 PR
+    labels:
+      - "dependencies"
+      - "python"
+      - "backend"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # 依赖分组 - 将相关依赖合并到一个 PR
+    groups:
+      fastapi-stack:
+        patterns:
+          - "fastapi*"
+          - "uvicorn*"
+          - "starlette*"
+          - "pydantic*"
+      langchain-stack:
+        patterns:
+          - "langchain*"
+      database-drivers:
+        patterns:
+          - "sqlalchemy*"
+          - "alembic*"
+          - "psycopg2*"
+          - "neo4j*"
+          - "redis*"
+      celery-stack:
+        patterns:
+          - "celery*"
+          - "kombu*"
+          - "billiard*"
+      testing:
+        patterns:
+          - "pytest*"
+    # 忽略特定依赖的更新
+    ignore:
+      - dependency-name: "numpy"
+        # 保持在 1.x 版本，不升级到 2.x
+        update-types: ["version-update:semver-major"]
+
+  # ==========================================
+  # Node.js 前端依赖监测 (npm)
+  # ==========================================
+  - package-ecosystem: "npm"
+    directory: "/web"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+      - "frontend"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # 依赖分组
+    groups:
+      react-stack:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-*"
+      build-tools:
+        patterns:
+          - "vite*"
+          - "rolldown*"
+          - "@vitejs/*"
+      ui-libraries:
+        patterns:
+          - "antd"
+          - "@dnd-kit/*"
+      dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "eslint*"
+          - "typescript*"
+          - "@types/*"
+    # 忽略特定依赖
+    ignore:
+      - dependency-name: "vite"
+        # 项目使用 rolldown-vite，不自动更新标准 vite
+      - dependency-name: "typescript"
+        # 保持在 5.9.x 版本
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
+
+  # ==========================================
+  # Docker 镜像监测
+  # ==========================================
+  - package-ecosystem: "docker"
+    directory: "/api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "chore(docker)"
+
+  # ==========================================
+  # GitHub Actions 工作流监测
+  # ==========================================
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"  # GitHub Actions 更新频率较低，每月检查即可
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(ci)"
