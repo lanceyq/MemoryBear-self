@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout entire repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0  # PR の差分ファイルまで取得する
 
